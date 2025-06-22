@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>React Color Toggle Button</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function ColorToggleButton() {
+      const [color, setColor] = React.useState("green");
+
+      const toggleColor = () => {
+        setColor(prev => prev === "green" ? "yellow" : "green");
+      };
+
+      const textColor = color === "yellow" ? "black" : "white";
+
+      const buttonStyle = {
+        backgroundColor: color,
+        color: textColor,
+        padding: "12px 24px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "8px",
+        cursor: "pointer"
+      };
+
+      return (
+        <div>
+          <button style={buttonStyle} onClick={toggleColor}>
+            Color: {color.charAt(0).toUpperCase() + color.slice(1)}
+          </button>
+          <p style={{ marginTop: "16px", fontSize: "18px" }}>
+            Current Color: {color.charAt(0).toUpperCase() + color.slice(1)}
+          </p>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<ColorToggleButton />);
+  </script>
+</body>
+</html>
